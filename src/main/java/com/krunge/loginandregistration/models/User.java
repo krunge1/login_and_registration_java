@@ -91,15 +91,14 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getConfirm() {
+	public String getConfirmPassword() {
 		return confirmPassword;
 	}
-
-	public void setConfirm(String confirmPassword) {
+	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-    
+
+   
   
 }
     
