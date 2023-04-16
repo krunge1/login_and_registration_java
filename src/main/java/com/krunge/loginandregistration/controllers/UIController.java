@@ -1,9 +1,11 @@
 package com.krunge.loginandregistration.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.krunge.loginandregistration.models.LoginUser;
 import com.krunge.loginandregistration.models.User;
@@ -16,9 +18,27 @@ public class UIController {
 	
 	@GetMapping("/")
 	public String rLoginReg (
-			@ModelAttribute("user") User user, 
-			@ModelAttribute("loginUser") LoginUser loginUser
+			Model model
 			){
+		model.addAttribute("user", new User());
+		model.addAttribute("loginUser", new LoginUser());
 		return "login.jsp";
+	}
+	
+	@GetMapping("/logout")
+		public String pLogout(HttpSession session) {
+			session.setAttribute("userId", null);
+			return "redirect:/";
+		}
+	
+	@GetMapping("/dashboard")
+	public String rDashboard(Model model, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		if(userId==null) {
+			return "redirect:/";
+		}
+		User user = userService.getOne(userId);
+		model.addAttribute("user", user);
+		return "show.jsp";
 	}
 }

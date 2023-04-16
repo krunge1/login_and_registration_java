@@ -4,9 +4,10 @@
 <!-- formatting (dates -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- form:form -->
-<%@ taglib prefix=”form” uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- for rendering errors on PUT routes -->
-<%@ page isErrorPage=”true” %>
+<%@ page isErrorPage="true" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,6 +19,10 @@
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     </head>
 <body>
-    <h1>Welcome!</h1>
+    <h1>Welcome ${user.userName}!</h1>
+    
+    <form action="/logout">
+ 		<button type="submit" class="btn btn-danger" value="logout">Logout</button>
+    </form>
 </body>
 </html>
